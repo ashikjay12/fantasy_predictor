@@ -9,8 +9,6 @@ from langchain_openai import ChatOpenAI
 from tools.fpl_loader import get_player_by_web_name
 from langchain_core.tools import StructuredTool
 from typing import Annotated
-import os
-from dotenv import load_dotenv
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
@@ -26,14 +24,16 @@ def conditional_edge(state: State) -> Literal['tool_node', '__end__']:
     else:
         return "__end__"
 
-async def main(): 
+async def main(input_player_name,openai_api_key): 
     llm = ChatOpenAI(
-        api_key=os.getenv("OPENAI_API_KEY"),
-        model=os.environ.get("MODEL"),
+        api_key=openai_api_key,
+        model="gpt-4o-mini",
     )
 
     with open('prompt.md', 'r', encoding='utf-8') as f:
         prompt_from_file = f.read()
+    
+    prompt_from_file = prompt_from_file.format(Player=input_player_name)
 
     graph = StateGraph(State)
 
@@ -62,9 +62,9 @@ async def main():
 
     new_state = await APP.ainvoke({"messages": [prompt_from_file]})
 
-    print(new_state["messages"][-1].content)
+    return new_state["messages"][-1].content
 
 if __name__ == "__main__":
-    load_dotenv()
+    
     import asyncio
     asyncio.run(main())
