@@ -6,6 +6,7 @@ import asyncio
 from pipeline import main
 import os
 from dotenv import load_dotenv
+from mangum import Mangum
 
 app = FastAPI()
 load_dotenv()
@@ -23,3 +24,5 @@ async def run_task(player: str):
 @app.get("/")
 async def root():
     return {"message": "hello"}
+
+handler = Mangum(app)
