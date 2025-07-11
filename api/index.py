@@ -19,3 +19,7 @@ async def run_task(player: str):
     """
     result = await main(player,openai_api_key)
     return {"message": "Task completed", "result": str(result)}
+
+@app.get("/")
+async def root():
+    return {"message": "hello"}
