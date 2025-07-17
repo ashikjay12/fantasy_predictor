@@ -6,9 +6,11 @@ from langgraph.prebuilt import ToolNode
 from langchain_core.tools import tool
 from langgraph.prebuilt import ToolNode
 from langchain_openai import ChatOpenAI
-from tools.fpl_loader import get_player_by_web_name
+from tools.fpl_loader import get_player_by_web_name, fetch_transfer_trends, fetch_team_fixtures_by_id
 from langchain_core.tools import StructuredTool
 from typing import Annotated
+from tools.team_fixtures import fetch_team_fixtures_using_id, get_head_to_head_results, get_last_results
+
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
@@ -42,8 +44,16 @@ async def main(input_player_name,openai_api_key):
         name="get_player_by_web_name",
         description="Get player details by web name."
     )
+    get_team_fixtures = StructuredTool.from_function(
+        coroutine=fetch_team_fixtures_by_id,
+        name="fetch_team_fixtures_by_id",
+        description="Fetch team fixtures by team ID."
+    )
 
-    tools = [get_player_details]
+    tools = [get_player_details, 
+    fetch_team_fixtures_using_id, 
+    get_head_to_head_results,
+    get_last_results]
     llm_with_tools = llm.bind_tools(tools)
 
     def prompt_node(state: State) -> State:

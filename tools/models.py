@@ -201,26 +201,26 @@ class Player(BaseModel):
 #     tean_name: str = Field(description="Name of the team")
 
 class Teams(IntEnum, Enum):
-    Arsenal = 1
-    Aston_Villa = 2
-    Brentford = 3
-    Brighton = 4
-    Burnley = 5
-    Chelsea = 6
-    Crystal_Palace = 7
-    Everton = 8
-    Leicester = 9
-    Leeds = 10
-    Liverpool = 11
-    Man_City = 12
-    Man_Utd = 13
-    Newcastle = 14
-    Norwich = 15
-    Southampton = 16
-    Spurs = 17
-    Watford = 18
-    West_Ham = 19
-    Wolves = 20
+    Arsenal_FC = 1
+    Aston_Vill_FC = 2
+    Brentford_FC = 3
+    Brighton_and_Hove_Albion_FC = 4
+    Burnley_FC = 5
+    Chelsea_FC = 6
+    Crystal_Palace_FC = 7
+    Everton_FC = 8
+    Leicester_FC = 9
+    Leeds_FC = 10
+    Liverpool_FC = 11
+    Manchester_City_FC = 13
+    Manchester_Utd_FC = 12
+    Newcastle_FC = 14
+    Norwich_FC = 15
+    Southampton_FC = 16
+    Tottenham_Hotspur_FC = 17
+    Watford_FC = 18
+    West_Ham_FC = 19
+    Wolverhampton_Wanderers_FC = 20
 
 
 # player = Player(
