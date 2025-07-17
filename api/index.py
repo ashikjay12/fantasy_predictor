@@ -18,7 +18,7 @@ async def run_task(player: str):
     """
     Run an async task that waits for the specified seconds.
     """
-    result = await main(player,openai_api_key)
+    result = await main("Haaland",openai_api_key)
     return {"message": "Task completed", "result": str(result)}
 
 @app.get("/")
