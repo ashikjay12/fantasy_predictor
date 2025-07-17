@@ -23,7 +23,6 @@ async def run_task(player: str):
 
 @app.get("/")
 async def root():
-    result = await main("Haaland",openai_api_key)
-    return {"message": "Task completed", "result": str(result)}
+    return {"message": "Task completed"}
 
 handler = Mangum(app)
