@@ -1,5 +1,5 @@
 def main():
-    print("Hello from fantasy-predictor!")
+    print("Hello from fantasy-predictor! This is a test")
 
 
 if __name__ == "__main__":
